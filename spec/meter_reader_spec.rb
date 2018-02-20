@@ -27,4 +27,10 @@ describe MeterReader do
     expect { meter_reader.check_total }.to raise_error(ErrorLibrary::InputTotalError)
   end
 
+  it 'checks new reading is within expected value' do
+    allow(meter_reader).to receive(:gets).and_return(10_000)
+    meter_reader.user_input
+    expect { meter_reader.within_estimate? }.to raise_error(ErrorLibrary::EstimateError)
+  end
+
 end

@@ -24,4 +24,32 @@ class MeterReader
     CURRENT_READING + @input
   end
 
+  def within_estimate?
+    unless (expected_lower_range..expected_higher_range).include?(calculate_estimate)
+      raise ErrorLibrary::EstimateError, 'Your estimate looks like it\'s not quite right'
+    end
+  end
+
+  private
+
+  def submitted_value
+    @input - CURRENT_READING
+  end
+
+  def estimated_usage
+    CURRENT_READING * 1.05
+  end
+
+  def calculate_estimate
+    estimated_usage + CURRENT_READING
+  end
+
+  def expected_lower_range
+    @lower_value = submitted_value * 0.85
+  end
+
+  def expected_higher_range
+    @higher_value = submitted_value * 1.15
+  end
+
 end

@@ -6,4 +6,7 @@ class ErrorLibrary
   class InputTotalError < StandardError
   end
 
+  class EstimateError < StandardError
+  end
+
 end
