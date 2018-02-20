@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe MeterReader do
 
-    it 'takes an input from STDIN' do
-      mr = MeterReader.new
-      allow($stdin).to receive(:gets) { 123 }
-      expect(mr.get_input).to eq 123
-    end
+  let(:meter_reader) { described_class.new }
 
+    it 'takes an input from STDIN' do
+      allow(meter_reader).to receive(:gets).and_return(123456)
+      expect(meter_reader.user_input).to eq 123456
+    end
 
 end
