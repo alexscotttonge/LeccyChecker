@@ -2,16 +2,6 @@ require 'spec_helper'
 
 describe MeterReader do
 
-  class ErrorLibrary
-
-    class InputLengthError < StandardError
-    end
-
-    class InputTotalError < StandardError
-    end
-
-  end
-
   subject(:meter_reader) { described_class.new }
 
   it 'takes an input from STDIN' do
@@ -31,7 +21,7 @@ describe MeterReader do
     expect { meter_reader.check_length }.to raise_error(ErrorLibrary::InputLengthError)
   end
 
-  it 'checks new input is larger than previous number' do
+  it 'raises an error if input is less than previous number' do
     allow(meter_reader).to receive(:gets).and_return(435)
     meter_reader.user_input
     expect { meter_reader.check_total }.to raise_error(ErrorLibrary::InputTotalError)
