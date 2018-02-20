@@ -1,3 +1,5 @@
+require_relative 'error_library'
+
 class MeterReader
 
   CURRENT_READING = 8000
@@ -9,6 +11,12 @@ class MeterReader
   def check_length
     if @input.digits.count < 4
       raise ErrorLibrary::InputLengthError, 'Your number must be between 4 and 6 digits long'
+    end
+  end
+
+  def check_total
+    if @input < CURRENT_READING
+      raise ErrorLibrary::InputTotalError, 'Your input must be higher than the previous reading'
     end
   end
 
