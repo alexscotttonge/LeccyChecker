@@ -3,7 +3,7 @@ class MeterReader
   CURRENT_READING = 8000
 
   def user_input
-    @input = gets
+    @input = gets.to_i
   end
 
   def new_reading
