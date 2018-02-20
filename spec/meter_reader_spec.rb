@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe MeterReader do
 
+  class InputLengthError < StandardError
+  end
+
   let(:meter_reader) { described_class.new }
 
     it 'takes an input from STDIN' do
@@ -13,6 +16,12 @@ describe MeterReader do
       allow(meter_reader).to receive(:gets).and_return(2000)
       meter_reader.user_input
       expect(meter_reader.new_reading).to eq 10000
+    end
+
+    it 'raises an error if the input length is less than four characters' do
+      allow(meter_reader).to receive(:gets).and_return(435)
+      meter_reader.user_input
+      expect { meter_reader.check_length }.to raise_error(InputLengthError)
     end
 
 end
