@@ -18,19 +18,19 @@ describe MeterReader do
   it 'raises an error if the input length is less than four characters' do
     allow(meter_reader).to receive(:gets).and_return(435)
     meter_reader.user_input
-    expect { meter_reader.check_length }.to output("It looks like your number is too short, please re-enter\n").to_stdout
+    expect { meter_reader.check_length }.to output.to_stdout
   end
 
   it 'raises an error if input is less than previous number' do
     allow(meter_reader).to receive(:gets).and_return(435)
     meter_reader.user_input
-    expect { meter_reader.check_total }.to output("Your input must be higher than the previous reading, please re-enter\n").to_stdout
+    expect { meter_reader.check_total }.to output.to_stdout
   end
 
   it 'checks new reading is within expected value' do
     allow(meter_reader).to receive(:gets).and_return(10_000)
     meter_reader.user_input
-    expect { meter_reader.within_estimate? }.to raise_error(ErrorLibrary::EstimateError)
+    expect { meter_reader.within_estimate? }.to output.to_stdout
   end
 
   it 'rolls over the meter' do

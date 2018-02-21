@@ -47,7 +47,8 @@ class MeterReader
 
   def within_estimate?
     unless (expected_lower_range..expected_higher_range).include?(calculate_estimate)
-      raise ErrorLibrary::EstimateError, 'Your estimate looks like it\'s not quite right'
+      puts 'Your estimate looks like it\'s not quite right, please re-enter'
+      user_input
     end
   end
 
