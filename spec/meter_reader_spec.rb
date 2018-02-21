@@ -12,7 +12,7 @@ describe MeterReader do
   it 'adds the new meter reading to the previous reading' do
     allow(meter_reader).to receive(:gets).and_return(2000)
     meter_reader.user_input
-    expect(meter_reader.new_reading).to eq 10_000
+    expect(meter_reader.update_reading).to eq 10_000
   end
 
   it 'raises an error if the input length is less than four characters' do

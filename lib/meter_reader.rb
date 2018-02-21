@@ -2,26 +2,30 @@ require_relative 'error_library'
 
 class MeterReader
 
-  CURRENT_READING = 8000
+  attr_reader :counter, :input
+
+  def initialize
+    @counter = 8000
+  end
 
   def user_input
     @input = gets.to_i
   end
 
   def check_length
-    if @input.digits.count < 4
+    if input.digits.count < 4
       raise ErrorLibrary::InputLengthError, 'Your number must be between 4 and 6 digits long'
     end
   end
 
   def check_total
-    if @input < CURRENT_READING
+    if input < counter
       raise ErrorLibrary::InputTotalError, 'Your input must be higher than the previous reading'
     end
   end
 
-  def new_reading
-    CURRENT_READING + @input
+  def update_reading
+    @counter += input
   end
 
   def within_estimate?
@@ -33,23 +37,23 @@ class MeterReader
   private
 
   def submitted_value
-    @input - CURRENT_READING
+    input - counter
   end
 
   def estimated_usage
-    CURRENT_READING * 1.05
+    counter * 1.05
   end
 
   def calculate_estimate
-    estimated_usage + CURRENT_READING
+    estimated_usage + counter
   end
 
   def expected_lower_range
-    @lower_value = submitted_value * 0.85
+    lower_value = submitted_value * 0.85
   end
 
   def expected_higher_range
-    @higher_value = submitted_value * 1.15
+    higher_value = submitted_value * 1.15
   end
 
 end
