@@ -1,4 +1,4 @@
-![Screenshot](QA_Tester_-_Task_pdf_1_page_.png)
+![Screenshot](QA_Tester_-_Task_pdf__1_page_.png)
 
 ## Overview
 Write a series of test cases to perform for a user inputting data on the page shown in the screenshot. I've completed the exercise using Ruby and RSpec to simulate user input with some methods printing to STDOUT to simulate an alert banner.
