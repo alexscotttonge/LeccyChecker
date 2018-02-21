@@ -28,7 +28,7 @@ describe MeterReader do
   end
 
   it 'checks new reading is within expected value' do
-    allow(meter_reader).to receive(:gets).and_return(10_000)
+    allow(meter_reader).to receive(:gets).and_return(3_000)
     meter_reader.user_input
     expect { meter_reader.within_estimate? }.to output.to_stdout
   end

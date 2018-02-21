@@ -1,5 +1,3 @@
-require_relative 'error_library'
-
 class MeterReader
 
   UPPER_METER_VALUE = 10_000
@@ -32,10 +30,6 @@ class MeterReader
     @counter += input
   end
 
-  def check_rollover
-    @reset_value = UPPER_METER_VALUE - update_reading
-  end
-
   def rollover
     check_rollover
     if @reset_value < 0
@@ -53,6 +47,10 @@ class MeterReader
   end
 
   private
+
+  def check_rollover
+    @reset_value = UPPER_METER_VALUE - update_reading
+  end
 
   def submitted_value
     input - counter
