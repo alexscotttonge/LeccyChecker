@@ -16,15 +16,15 @@ class MeterReader
 
   def check_length
     if input.digits.count < 4
-      puts 'It looks like your number is too short, please reenter'
+      puts 'It looks like your number is too short, please re-enter'
       user_input
-      # raise ErrorLibrary::InputLengthError, 'Your number must be between 4 and 6 digits long'
     end
   end
 
   def check_total
     if input < counter
-      raise ErrorLibrary::InputTotalError, 'Your input must be higher than the previous reading'
+      puts 'Your input must be higher than the previous reading, please re-enter'
+      user_input
     end
   end
 
