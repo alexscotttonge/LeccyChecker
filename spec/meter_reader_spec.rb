@@ -33,4 +33,10 @@ describe MeterReader do
     expect { meter_reader.within_estimate? }.to raise_error(ErrorLibrary::EstimateError)
   end
 
+  it 'rolls over the meter' do
+    allow(meter_reader).to receive(:gets).and_return(2_001)
+    meter_reader.user_input
+    expect(meter_reader.rollover).to eq 1
+  end
+
 end
