@@ -16,7 +16,9 @@ class MeterReader
 
   def check_length
     if input.digits.count < 4
-      raise ErrorLibrary::InputLengthError, 'Your number must be between 4 and 6 digits long'
+      puts 'It looks like your number is too short, please reenter'
+      user_input
+      # raise ErrorLibrary::InputLengthError, 'Your number must be between 4 and 6 digits long'
     end
   end
 
